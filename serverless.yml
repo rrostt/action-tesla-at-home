@@ -6,11 +6,19 @@ provider:
     stage: dev
     region: eu-north-1
 
+plugins:
+    - serverless-dotenv-plugin
+
 functions:
     app:
         handler: lib/handler.app
         events:
             - http:
                 path: /{proxy+}
-                method: ANY
+                method: GET
                 cors: true
+            - http:
+                path: /{proxy+}
+                method: POST
+                cors: true
+    
