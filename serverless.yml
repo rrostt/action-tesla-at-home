@@ -1,0 +1,16 @@
+service: action-tesla-at-home
+
+provider:
+    name: aws
+    runtime: nodejs12.x
+    stage: dev
+    region: eu-north-1
+
+functions:
+    app:
+        handler: lib/handler.app
+        events:
+            - http:
+                path: /{proxy+}
+                method: ANY
+                cors: true
